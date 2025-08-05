@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMOKE LOUNGE - Кальянная премиум класса</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #f59e0b;
+            --secondary-color: #ef4444;
+            --accent-color: #8b5cf6;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-800);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: none;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-menu button {
+            background: none;
+            border: none;
+            color: var(--gray-300);
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-menu button:hover {
+            color: #fff;
+        }
+
+        .nav-menu .booking-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            transition: all 0.3s;
+        }
+
+        .nav-menu .booking-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 1px solid var(--gray-800);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu button {
+            display: block;
+            width: 100%;
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            color: var(--gray-300);
+            text-align: left;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu button:hover {
+            color: white;
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a, var(--gray-900), #000);
+            overflow: hidden;
+            padding-top: 64px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent, rgba(0,0,0,0.4));
+        }
+
+        .smoke-background {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .smoke-layer {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: smokeFloat 20s ease-in-out infinite;
+        }
+
+        .smoke-layer-1 {
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.05), transparent);
+            top: 80px;
+            left: 80px;
+            animation-delay: 0s;
+        }
+
+        .smoke-layer-2 {
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.05), rgba(139, 92, 246, 0.05), transparent);
+            width: 320px;
+            height: 320px;
+            bottom: 80px;
+            right: 80px;
+            animation-delay: -7s;
+        }
+
+        .smoke-layer-3 {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08), rgba(245, 158, 11, 0.08), transparent);
+            width: 256px;
+            height: 256px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        @keyframes smokeFloat {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            33% {
+                transform: translate(50px, -30px) rotate(120deg) scale(1.1);
+                opacity: 0.5;
+            }
+            66% {
+                transform: translate(-30px, 50px) rotate(240deg) scale(0.9);
+                opacity: 0.4;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1024px;
+            padding: 0 24px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 16px;
+            letter-spacing: -0.025em;
+        }
+
+        .hero .gradient-text {
+            display: block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            color: var(--gray-300);
+            max-width: 512px;
+            margin: 0 auto 32px;
+            font-size: 18px;
+        }
+
+        .hero .description {
+            color: var(--gray-400);
+            max-width: 448px;
+            margin: 0 auto 48px;
+        }
+
+        .hero-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 16px 48px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(245, 158, 11, 0.25);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .scroll-indicator button {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .scroll-indicator button:hover {
+            color: white;
+        }
+
+        .scroll-mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--gray-400);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            margin-top: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .scroll-indicator button:hover .scroll-mouse {
+            border-color: white;
+        }
+
+        .scroll-dot {
+            width: 4px;
+            height: 12px;
+            background: var(--gray-400);
+            border-radius: 2px;
+            margin-top: 8px;
+            animation: bounce 2s infinite;
+            transition: background-color 0.3s;
+        }
+
+        .scroll-indicator button:hover .scroll-dot {
+            background: white;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* Particles */
+        .hero-particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .particle-1 {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            top: 80px;
+            left: 80px;
+            animation: pulse 3s infinite;
+        }
+
+        .particle-2 {
+            width: 12px;
+            height: 12px;
+            background: var(--secondary-color);
+            bottom: 128px;
+            right: 128px;
+            opacity: 0.4;
+            animation: pulse 3s infinite 1s;
+        }
+
+        .particle-3 {
+            width: 4px;
+            height: 4px;
+            background: white;
+            top: 33.333%;
+            right: 80px;
+            opacity: 0.5;
+            animation: pulse 3s infinite 2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 96px 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .section-title .gradient-text {
+            display: block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            text-align: center;
+            color: var(--gray-400);
+            max-width: 512px;
+            margin: 0 auto 64px;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, #000, var(--gray-900));
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-content {
+            order: 2;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 32px;
+        }
+
+        .about-text {
+            space-y: 24px;
+        }
+
+        .about-text p {
+            color: var(--gray-300);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .about-text .highlight {
+            color: var(--primary-color);
+        }
+
+        .about-image {
+            order: 1;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 384px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image::before,
+        .about-image::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .about-image::before {
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.2));
+            top: -24px;
+            right: -24px;
+        }
+
+        .about-image::after {
+            width: 128px;
+            height: 128px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(139, 92, 246, 0.2));
+            bottom: -24px;
+            left: -24px;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-content {
+                order: 1;
+            }
+            .about-image {
+                order: 2;
+            }
+        }
+
+        /* Menu Section */
+        .menu {
+            background: linear-gradient(180deg, var(--gray-900), #0f172a);
+        }
+
+        .menu-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .filter-btn {
+            padding: 8px 24px;
+            border: none;
+            border-radius: 50px;
+            background: var(--gray-800);
+            color: var(--gray-300);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            color: white;
+            background: var(--gray-700);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            justify-content: center;
+        }
+
+        .menu-item {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid var(--gray-700);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .menu-item:hover {
+            background: rgba(31, 41, 55, 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item-image img {
+            width: 100%;
+            height: 192px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.1);
+        }
+
+        .menu-item-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            z-index: 10;
+        }
+
+        .menu-tags {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .menu-tag {
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--gray-300);
+            border: 1px solid var(--gray-600);
+            padding: 2px 8px;
+            border-radius: 50px;
+            font-size: 12px;
+        }
+
+        .menu-content {
+            padding: 24px;
+        }
+
+        .menu-content h3 {
+            color: white;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .menu-price {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            float: right;
+        }
+
+        .menu-description {
+            color: var(--gray-400);
+            margin-bottom: 16px;
+            font-size: 14px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .order-btn {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.8), rgba(239, 68, 68, 0.8));
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        /* Events Section */
+        .events {
+            background: linear-gradient(180deg, #0f172a, var(--gray-900));
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .event-card {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid var(--gray-700);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .event-card:hover {
+            background: rgba(31, 41, 55, 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.1);
+        }
+
+        .event-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 192px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+
+        .event-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent, rgba(0,0,0,0.2));
+        }
+
+        .event-content {
+            padding: 24px;
+        }
+
+        .event-content h3 {
+            color: white;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .event-description {
+            color: var(--gray-400);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .event-details {
+            margin-bottom: 24px;
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: var(--gray-300);
+        }
+
+        .event-detail .emoji {
+            color: var(--primary-color);
+        }
+
+        .event-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .event-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: linear-gradient(180deg, var(--gray-900), #000);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .review-card {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid var(--gray-700);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .review-card:hover {
+            background: rgba(31, 41, 55, 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.05);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .review-info h4 {
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .review-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stars {
+            color: var(--primary-color);
+        }
+
+        .review-date {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .review-text {
+            color: var(--gray-300);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .reviews-summary {
+            text-align: center;
+        }
+
+        .reviews-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            color: var(--gray-400);
+        }
+
+        .rating-summary {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rating-summary .star {
+            color: var(--primary-color);
+        }
+
+        .rating-summary .score {
+            color: white;
+            font-weight: 600;
+        }
+
+        .divider {
+            width: 1px;
+            height: 24px;
+            background: var(--gray-600);
+        }
+
+        .write-review-btn {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.8), rgba(239, 68, 68, 0.8));
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .write-review-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(180deg, #000, var(--gray-900));
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        .contact-info {
+            space-y: 32px;
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 24px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .contact-details {
+            space-y: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .contact-text h4 {
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .contact-text p {
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        .contact-text button {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .contact-text button:hover {
+            color: var(--primary-color);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .instagram-btn {
+            background: linear-gradient(135deg, #e91e63, #9c27b0);
+        }
+
+        .instagram-btn:hover {
+            background: linear-gradient(135deg, #ad1457, #7b1fa2);
+        }
+
+        .telegram-btn {
+            background: linear-gradient(135deg, #2196f3, #00bcd4);
+        }
+
+        .telegram-btn:hover {
+            background: linear-gradient(135deg, #1976d2, #0097a7);
+        }
+
+        .map-placeholder {
+            background: var(--gray-800);
+            border-radius: 16px;
+            height: 256px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--gray-400);
+            margin-top: 32px;
+        }
+
+        .map-placeholder .emoji {
+            color: var(--primary-color);
+            font-size: 48px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid var(--gray-700);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .booking-form h3 {
+            color: white;
+            margin-bottom: 24px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(55, 65, 81, 0.5);
+            border: 1px solid var(--gray-600);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray-400);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            border-top: 1px solid var(--gray-800);
+            padding: 48px 0;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-content h3 {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .footer-content .tagline {
+            color: var(--gray-400);
+            margin-bottom: 24px;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            color: var(--gray-500);
+            flex-wrap: wrap;
+        }
+
+        /* Hidden class for filtering */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .about-content h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                padding: 0 16px;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" onclick="scrollToSection('hero')">SMOKE LOUNGE</div>
+            
+            <div class="nav-menu">
+                <button onclick="scrollToSection('about')">О нас</button>
+                <button onclick="scrollToSection('menu')">Меню</button>
+                <button onclick="scrollToSection('events')">События</button>
+                <button onclick="scrollToSection('reviews')">Отзывы</button>
+                <button class="booking-btn" onclick="scrollToSection('contact')">Бронь</button>
+            </div>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <button onclick="scrollToSection('about'); toggleMobileMenu()">О нас</button>
+            <button onclick="scrollToSection('menu'); toggleMobileMenu()">Меню</button>
+            <button onclick="scrollToSection('events'); toggleMobileMenu()">События</button>
+            <button onclick="scrollToSection('reviews'); toggleMobileMenu()">Отзывы</button>
+            <button onclick="scrollToSection('contact'); toggleMobileMenu()">Контакты</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="smoke-background">
+            <div class="smoke-layer smoke-layer-1"></div>
+            <div class="smoke-layer smoke-layer-2"></div>
+            <div class="smoke-layer smoke-layer-3"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>
+                SMOKE
+                <span class="gradient-text">LOUNGE</span>
+            </h1>
+            <p class="subtitle">Дым, который говорит за тебя</p>
+            <p class="description">Погрузись в атмосферу роскоши и расслабления в самой стильной кальянной города</p>
+            <button class="hero-btn" onclick="scrollToSection('contact')">Забронировать столик</button>
+        </div>
+        
+        <div class="scroll-indicator">
+            <button onclick="scrollToSection('about')">
+                <div>Листай вниз</div>
+                <div class="scroll-mouse">
+                    <div class="scroll-dot"></div>
+                </div>
+            </button>
+        </div>
+        
+        <div class="hero-particle particle-1"></div>
+        <div class="hero-particle particle-2"></div>
+        <div class="hero-particle particle-3"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>
+                        Атмосфера
+                        <span class="gradient-text">Роскоши</span>
+                    </h2>
+                    <div class="about-text">
+                        <p>Добро пожаловать в мир изысканного отдыха, где каждая деталь создана для вашего комфорта. Наша кальянная — это не просто место, это целая философия наслаждения моментом.</p>
+                        <p>Мягкое освещение, качественные табаки, профессиональные кальянщики и атмосфера, которая заставляет забыть о суете повседневной жизни. Здесь время течет по-особенному.</p>
+                        <p class="highlight">Каждый вечер с нами — это маленькое путешествие в мир вкусов и ароматов.</p>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1544207240-6c5e8c9ed68b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Интерьер кальянной">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section menu">
+        <div class="container">
+            <h2 class="section-title">
+                Наше
+                <span class="gradient-text">Меню</span>
+            </h2>
+            <p class="section-description">Премиальные табаки и авторские миксы от наших мастеров</p>
+            
+            <div class="menu-filters">
+                <button class="filter-btn active" onclick="filterMenu('all')">Все</button>
+                <button class="filter-btn" onclick="filterMenu('classic')">Классика</button>
+                <button class="filter-btn" onclick="filterMenu('premium')">Премиум</button>
+                <button class="filter-btn" onclick="filterMenu('refreshing')">Освежающие</button>
+                <button class="filter-btn" onclick="filterMenu('fruity')">Фруктовые</button>
+            </div>
+            
+            <div class="menu-grid" id="menuGrid">
+                <div class="menu-item" data-category="classic">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Двойное яблоко">
+                        <div class="popular-badge">Популярный</div>
+                        <div class="menu-tags">
+                            <span class="menu-tag">Классика</span>
+                            <span class="menu-tag">Сладкий</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <h3>Двойное яблоко <span class="menu-price">1500₽</span></h3>
+                        <p class="menu-description">Классический вкус с насыщенным ароматом спелых яблок</p>
+                        <button class="order-btn" onclick="orderItem('Двойное яблоко')">Заказать</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="refreshing">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Мята и лайм">
+                        <div class="menu-tags">
+                            <span class="menu-tag">Освежающий</span>
+                            <span class="menu-tag">Цитрус</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <h3>Мята и лайм <span class="menu-price">1600₽</span></h3>
+                        <p class="menu-description">Освежающее сочетание прохладной мяты и цитрусового лайма</p>
+                        <button class="order-btn" onclick="orderItem('Мята и лайм')">Заказать</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="premium">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Малина и роза">
+                        <div class="popular-badge">Популярный</div>
+                        <div class="menu-tags">
+                            <span class="menu-tag">Премиум</span>
+                            <span class="menu-tag">Цветочный</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <h3>Малина и роза <span class="menu-price">1700₽</span></h3>
+                        <p class="menu-description">Изысканный микс ягодной сладости и цветочной нежности</p>
+                        <button class="order-btn" onclick="orderItem('Малина и роза')">Заказать</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="fruity">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ягодный микс">
+                        <div class="menu-tags">
+                            <span class="menu-tag">Фруктовый</span>
+                            <span class="menu-tag">Сладкий</span>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <h3>Ягодный микс <span class="menu-price">1650₽</span></h3>
+                        <p class="menu-description">Сочетание клубники, черники и малины</p>
+                        <button class="order-btn" onclick="orderItem('Ягодный микс')">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="section events">
+        <div class="container">
+            <h2 class="section-title">
+                События &
+                <span class="gradient-text">Акции</span>
+            </h2>
+            <p class="section-description">Не пропустите наши эксклюзивные мероприятия и выгодные предложения</p>
+            
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DJ Night">
+                    </div>
+                    <div class="event-content">
+                        <h3>DJ Night: Electronic Vibes</h3>
+                        <p class="event-description">Погрузись в мир электронной музыки с лучшими ди-джеями города</p>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <span class="emoji">📅</span>
+                                <span>15 августа</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="emoji">🕒</span>
+                                <span>22:00</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="emoji">👥</span>
+                                <span>50 мест</span>
+                            </div>
+                        </div>
+                        <button class="event-btn" onclick="learnMore('DJ Night: Electronic Vibes')">Узнать подробнее</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1544207240-6c5e8c9ed68b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Скидка 30%">
+                    </div>
+                    <div class="event-content">
+                        <h3>Скидка 30% на все кальяны</h3>
+                        <p class="event-description">Каждый вторник — день больших скидок для наших постоянных гостей</p>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <span class="emoji">📅</span>
+                                <span>Каждый вторник</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="emoji">🕒</span>
+                                <span>18:00-23:00</span>
+                            </div>
+                            <div class="event-detail">
+                                <span class="emoji">👥</span>
+                                <span>Без ограничений</span>
+                            </div>
+                        </div>
+                        <button class="event-btn" onclick="learnMore('Скидка 30% на все кальяны')">Узнать подробнее</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section reviews">
+        <div class="container">
+            <h2 class="section-title">
+                Отзывы
+                <span class="gradient-text">Гостей</span>
+            </h2>
+            <p class="section-description">Что говорят о нас наши постоянные клиенты</p>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Алексей М." class="review-avatar">
+                        <div class="review-info">
+                            <h4>Алексей М.</h4>
+                            <div class="review-meta">
+                                <div class="stars">★★★★★</div>
+                                <span class="review-date">2 дня назад</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Невероятная атмосфера! Кальяны на высшем уровне, обслуживание безупречное. Особенно понравился микс с малиной и розой."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Мария К." class="review-avatar">
+                        <div class="review-info">
+                            <h4>Мария К.</h4>
+                            <div class="review-meta">
+                                <div class="stars">★★★★★</div>
+                                <span class="review-date">5 дней назад</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Лучшая кальянная в городе! Интерьер просто завораживает, а табаки — это что-то невероятное."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Дмитрий П." class="review-avatar">
+                        <div class="review-info">
+                            <h4>Дмитрий П.</h4>
+                            <div class="review-meta">
+                                <div class="stars">★★★★★</div>
+                                <span class="review-date">1 неделю назад</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Отличное место для отдыха с друзьями. Качественные кальяны, уютная обстановка, адекватные цены."</p>
+                </div>
+            </div>
+            
+            <div class="reviews-summary">
+                <div class="reviews-stats">
+                    <div class="rating-summary">
+                        <span class="star">★</span>
+                        <span class="score">4.9</span>
+                        <span>средняя оценка</span>
+                    </div>
+                    <div class="divider"></div>
+                    <span>более 500 отзывов</span>
+                </div>
+                <button class="write-review-btn" onclick="writeReview()">Оставить отзыв</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">
+                Забронируй
+                <span class="gradient-text">Столик</span>
+            </h2>
+            <p class="section-description">Свяжись с нами любым удобным способом или забронируй столик онлайн</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div>
+                        <h3>Контакты</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-text">
+                                    <h4>Адрес</h4>
+                                    <p>ул. Тверская, 15<br>Москва, 125009</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-text">
+                                    <h4>Телефон</h4>
+                                    <button onclick="callUs()">+7 (495) 123-45-67</button>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">🕒</div>
+                                <div class="contact-text">
+                                    <h4>Время работы</h4>
+                                    <p>Пн-Чт: 18:00 - 02:00<br>Пт-Сб: 18:00 - 04:00<br>Вс: 18:00 - 02:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3>Соцсети</h3>
+                        <div class="social-buttons">
+                            <button class="social-btn instagram-btn" onclick="openInstagram()">📷 Instagram</button>
+                            <button class="social-btn telegram-btn" onclick="openTelegram()">💬 Telegram</button>
+                        </div>
+                    </div>
+                    
+                    <div class="map-placeholder">
+                        <div>
+                            <span class="emoji">🗺️</span>
+                            <p>Карта будет здесь</p>
+                            <p>Google Maps интеграция</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="booking-form">
+                    <h3>Онлайн бронирование</h3>
+                    <form id="bookingForm" onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Имя</label>
+                                <input type="text" name="name" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Телефон</label>
+                                <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Дата</label>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Время</label>
+                                <input type="time" name="time" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Количество гостей</label>
+                            <input type="number" name="guests" placeholder="2" min="1" max="20" value="2" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Комментарий</label>
+                            <textarea name="comment" placeholder="Особые пожелания или предпочтения по кальянам..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Забронировать сейчас</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>SMOKE LOUNGE</h3>
+                <p class="tagline">Дым, который говорит за тебя</p>
+                <div class="footer-info">
+                    <span>© 2024 Smoke Lounge</span>
+                    <span>•</span>
+                    <span>Все права защищены</span>
+                    <span>•</span>
+                    <span>18+</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Menu filtering
+        function filterMenu(category) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            // Update active filter button
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Order item
+        function orderItem(itemName) {
+            alert(`Заказ "${itemName}" отправлен! Наш администратор свяжется с вами в ближайшее время.`);
+        }
+
+        // Learn more about event
+        function learnMore(eventTitle) {
+            alert(`Подробная информация о "${eventTitle}" будет отправлена на ваш телефон. Звоните: +7 (495) 123-45-67`);
+        }
+
+        // Write review
+        function writeReview() {
+            alert("Спасибо за желание оставить отзыв! Перейдите на нашу страницу в Google Maps или оставьте отзыв при посещении.");
+        }
+
+        // Call us
+        function callUs() {
+            window.open('tel:+74951234567');
+        }
+
+        // Open Instagram
+        function openInstagram() {
+            alert("Перенаправляем в Instagram @smokelounge_moscow");
+        }
+
+        // Open Telegram
+        function openTelegram() {
+            alert("Перенаправляем в Telegram @smokelounge_bot");
+        }
+
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            
+            alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами по номеру ${phone} для подтверждения бронирования.`);
+            
+            // Reset form
+            event.target.reset();
+            // Reset guests to default value
+            document.querySelector('input[name="guests"]').value = '2';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!nav.contains(event.target) && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Add smooth scrolling behavior for all anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date for booking form to today
+            const dateInput = document.querySelector('input[name="date"]');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        });
+    </script>
+</body>
+</html>
